@@ -39,6 +39,26 @@ class StandardTranche(Tranche):
     def timePeriod(self):
         return self._timePeriod
 
+    @property
+    def principalPayments(self):
+        return self._principalPayments
+
+    @property
+    def interestPayments(self):
+        return self._interestPayments
+
+    @property
+    def interestShortfalls(self):
+        return self._interestShortfalls
+
+    @property
+    def ifPaidPrincipal(self):
+        return self._ifPaidPrincipal
+
+    @property
+    def ifPaidInterest(self):
+        return self._ifPaidInterest
+
     def increaseTimePeriod(self):
         if self._ifPaidPrincipal == 0:
             self._principalPayments.append(0)
