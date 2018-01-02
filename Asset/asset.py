@@ -21,7 +21,7 @@ class Asset(object):
 
     @property
     def depreciateRate(self):
-        return self._depreciateRate
+        raise NotImplementedError()
 
     @depreciateRate.setter
     def depreciateRate(self, depreciateRate):
