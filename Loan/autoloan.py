@@ -11,7 +11,7 @@ from Asset.car import *
 
 class AutoLoan(FixedRateLoan):
     def __init__(self, notional, rate, term, car):
-        super().__init__(notional, rate, term)
+        super().__init__(notional, rate, term, car)
         if isinstance(car, Car):
             self._car = car
         else:

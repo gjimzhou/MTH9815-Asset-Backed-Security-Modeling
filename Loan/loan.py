@@ -9,13 +9,13 @@ from Loan.loanbase import *
 
 
 class FixedRateLoan(Loan):
-    def __init__(self, notional, rate, term):
-        super().__init__(notional, rate, term)
+    def __init__(self, notional, rate, term, asset):
+        super().__init__(notional, rate, term, asset)
 
 
 class VariableRateLoan(Loan):
-    def __init__(self, notional, rateDictionary, term):
-        super().__init__(notional, None, term)
+    def __init__(self, notional, rateDictionary, term, asset):
+        super().__init__(notional, None, term, asset)
         self._rateDictionary = rateDictionary
 
     @property

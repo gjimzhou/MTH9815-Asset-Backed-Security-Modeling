@@ -5,6 +5,8 @@ Tranche Classes
 Author: gjimzhou
 """
 
+import numpy as np
+
 
 class Tranche(object):
     def __init__(self, notional, rate, subordination):
@@ -36,6 +38,16 @@ class Tranche(object):
     def subordination(self, subordination):
         self._subordination = subordination
 
+    def irr(self):
+        pass
+
+    def dirr(self):
+        dirr = self._rate - self.irr()
+        return dirr
+
+    def al(self):
+        pass
+
 
 class StandardTranche(Tranche):
     def __init__(self, notional, rate, subordination):
@@ -44,6 +56,7 @@ class StandardTranche(Tranche):
         self._principalPayments = []
         self._interestPayments = []
         self._interestShortfalls = []
+        self._notionalBalances = []
         self._ifPaidPrincipal = 0
         self._ifPaidInterest = 0
 
@@ -77,6 +90,7 @@ class StandardTranche(Tranche):
         if self._ifPaidInterest == 0:
             self._interestPayments.append(0)
             self._interestShortfalls.append(self.interestDue())
+        self._notionalBalances.append(self.notionalBalance())
         self._period += 1
         self._ifPaidPrincipal = 0
         self._ifPaidInterest = 0
@@ -131,3 +145,15 @@ class StandardTranche(Tranche):
         self._interestShortfalls = []
         self._ifPaidPrincipal = 0
         self._ifPaidInterest = 0
+
+    def irr(self):
+        cashFlow = [self._notional]
+        for i in range(1, self._period):
+            totalPayment = self._principalPayments[i] + self._interestPayments[i]
+            cashFlow.append(totalPayment)
+        return np.irr(cashFlow) * 12
+
+    def al(self):
+        periods = list(range(self._period))
+        al = np.dot(periods, self._notionalBalances) / self._notional
+        return al
