@@ -50,8 +50,3 @@ class VariableRateLoan(Loan):
         term = self._term
         balance = self.calculateBalance(notional, rate, term, period)
         return balance
-
-
-class AutoLoan(FixedRateLoan):
-    def __init__(self, notional, rate, term):
-        super().__init__(notional, rate, term)

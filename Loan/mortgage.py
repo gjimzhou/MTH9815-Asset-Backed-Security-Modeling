@@ -6,19 +6,21 @@ Author: gjimzhou
 """
 
 from Loan.loan import *
+from Asset.house import *
 
 
 class MortgageMixin(Loan):
-    def __init__(self, notional, rate, term, asset):
+    def __init__(self, notional, rate, term, house):
         super().__init__(notional, rate, term)
-        self._asset = asset
+        if isinstance(house, House):
+            self._house = house
+        else:
+            raise Exception("This is not a house!")
 
     def pmi(self, period):
         notional = self._notional
-        rate = self.monthlyRate(self._rate)
-        term = self._term
-        loanValue = Loan.calculateBalance(notional, rate, term, period)
-        assetValue = self._asset.currentValue(period)
+        loanValue = self.balance(period)
+        assetValue = self._house.currentValue(period)
         ltv = loanValue / assetValue
         pmi = (ltv > 0.8) * 0.000075 * notional
         return pmi
@@ -37,11 +39,11 @@ class MortgageMixin(Loan):
 
 
 class FixedMortgage(MortgageMixin, FixedRateLoan):
-    def __init__(self, notional, rate, term, asset):
-        super().__init__(notional, rate, term, asset)
+    def __init__(self, notional, rate, term, house):
+        super().__init__(notional, rate, term, house)
 
 
 class VariableMortgage(MortgageMixin, VariableRateLoan):
-    def __init__(self, notional, rateDictionary, term, asset):
-        MortgageMixin.__init__(notional, None, term, asset)
+    def __init__(self, notional, rateDictionary, term, house):
+        MortgageMixin.__init__(notional, None, term, house)
         VariableRateLoan.__init__(notional, rateDictionary, term)

@@ -6,6 +6,7 @@ Author: gjimzhou
 """
 
 from Loan.mortgage import *
+from Loan.autoloan import *
 
 
 class LoanPool(object):

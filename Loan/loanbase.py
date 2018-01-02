@@ -9,10 +9,14 @@ from Asset.asset import *
 
 
 class Loan(object):
-    def __init__(self, notional, rate, term):
+    def __init__(self, notional, rate, term, asset):
         self._notional = notional
         self._rate = rate
         self._term = term
+        if isinstance(asset, Asset):
+            self._asset = asset
+        else:
+            raise Exception("This is not an asset!")
 
     @property
     def notional(self):
@@ -73,6 +77,16 @@ class Loan(object):
         term = self._term
         balance = self.calculateBalance(notional, rate, term, period)
         return balance
+
+    def recoveryValue(self, period):
+        recoveryValue = self._asset.currentValue(period) * 0.6
+        return recoveryValue
+
+    def equity(self, period):
+        loanValue = self.balance(period)
+        assetValue = self._asset.currentValue(period)
+        equity = assetValue - loanValue
+        return equity
 
     @classmethod
     def calculateMonthlyPayment(cls, notional, rate, term, period):
