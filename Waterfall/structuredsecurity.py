@@ -32,7 +32,8 @@ class StructuredSecurity(object):
         return self._reserveAccount
 
     def addTranche(self, percent, rate, subordination):
-        self._tranches.append(StandardTranche(self._totalNotional * percent, rate, subordination))
+        tranche = StandardTranche(self._totalNotional * percent, rate, subordination)
+        self._tranches.append(tranche)
         self._tranches.sort(key=lambda t: t.subordination(), reverse=True)
 
     def increaseTimePeriods(self):
@@ -57,7 +58,7 @@ class StructuredSecurity(object):
         elif self._mode == 'Pro Rata':
             principalPayments = 0
             for t in self._tranches:
-                percent = t.notional() / self._totalNotional
+                percent = t.notional / self._totalNotional
                 notionalBalance = t.notionalBalance()
                 principalPayment = min(cashAmount * percent, notionalBalance)
                 t.makePrincipalPayment(principalPayment)
@@ -75,13 +76,13 @@ class StructuredSecurity(object):
             interestShortfall = 0
             principalPaid = 0
             notionalBalance = t.notionalBalance()
-            if t.ifPaidInterest() == 1:
-                interestPaid = t.interestPayments()[-1]
-                interestShortfall = t.interestShortfall()[-1]
+            if t.ifPaidInterest == 1:
+                interestPaid = t.interestPayments[-1]
+                interestShortfall = t.interestShortfall[-1]
             else:
                 interestShortfall = interestDue
-            if t.ifPaidPrincipal() == 1:
-                principalPaid = t.principalPayments()[-1]
+            if t.ifPaidPrincipal == 1:
+                principalPaid = t.principalPayments[-1]
             waterfall.append([interestDue, interestPaid, interestShortfall, principalPaid, notionalBalance])
 
         return waterfall

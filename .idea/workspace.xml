@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3681651c-8c13-4a86-a709-c05009bb3dea" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Loan/loan.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Loan/mortgage.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Loan/loanpool.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/gjimz.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/gjimz.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Asset/asset.py" afterPath="$PROJECT_DIR$/Asset/asset.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Loan/loanbase.py" afterPath="$PROJECT_DIR$/Loan/loanbase.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Loan/mortgage.py" afterPath="$PROJECT_DIR$/Loan/mortgage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Waterfall/structuredsecurity.py" afterPath="$PROJECT_DIR$/Waterfall/structuredsecurity.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,56 +17,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="loanbase.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Loan/loanbase.py">
+      <file leaf-file-name="structuredsecurity.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Waterfall/structuredsecurity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="75" column="0" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="75" selection-end-column="0" />
+            <state relative-caret-position="1425">
+              <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loan.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Loan/loan.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
-              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mortgage.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Loan/mortgage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="26" column="55" lean-forward="true" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loan.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Loan/loan.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="14" column="29" lean-forward="true" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-              <folding>
-                <element signature="e#26#57#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="mortgage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Loan/mortgage.py">
+        <entry file="file://$PROJECT_DIR$/Loan/mortgage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="50" selection-end-column="67" />
-              <folding>
-                <element signature="e#22#75#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="475">
+              <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="loanpool.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Loan/loanpool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1425">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoanPool.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Loan/LoanPool.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="88" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -86,6 +72,9 @@
       <find>interestDue</find>
       <find>timePeriod</find>
       <find>float</find>
+      <find>total</find>
+      <find>notionalBalance</find>
+      <find>()</find>
     </findStrings>
     <replaceStrings>
       <replace>period</replace>
@@ -101,13 +90,14 @@
         <option value="$PROJECT_DIR$/tranche.py" />
         <option value="$PROJECT_DIR$/structuredsecurity.py" />
         <option value="$PROJECT_DIR$/Loan/loanBase.py" />
-        <option value="$PROJECT_DIR$/Waterfall/structuredsecurity.py" />
         <option value="$PROJECT_DIR$/Waterfall/tranche.py" />
         <option value="$PROJECT_DIR$/Asset/asset.py" />
         <option value="$PROJECT_DIR$/../../../Group7_Final_Project/Loan/mortgage.py" />
         <option value="$PROJECT_DIR$/Loan/loanbase.py" />
-        <option value="$PROJECT_DIR$/Loan/mortgage.py" />
         <option value="$PROJECT_DIR$/Loan/loan.py" />
+        <option value="$PROJECT_DIR$/Loan/mortgage.py" />
+        <option value="$PROJECT_DIR$/Loan/loanpool.py" />
+        <option value="$PROJECT_DIR$/Waterfall/structuredsecurity.py" />
       </list>
     </option>
   </component>
@@ -213,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514879160736</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Finish Mortgage">
+      <created>1514886663575</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1514886663575</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -250,7 +247,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Finish StructuredSecurity" />
     <MESSAGE value="Finish Loan" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finish Loan" />
+    <MESSAGE value="Finish Mortgage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finish Mortgage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -387,22 +385,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Waterfall/tranche.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="73" column="31" lean-forward="false" selection-start-line="73" selection-start-column="30" selection-end-line="73" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Waterfall/structuredsecurity.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1270">
-          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Asset/asset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
@@ -429,14 +411,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Loan/loanbase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="75" column="0" lean-forward="true" selection-start-line="38" selection-start-column="25" selection-end-line="75" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Loan/loan.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="50">
@@ -447,18 +421,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Loan/loan.py">
+    <entry file="file://$PROJECT_DIR$/Loan/mortgage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        <state relative-caret-position="475">
+          <caret line="22" column="20" lean-forward="true" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Loan/mortgage.py">
+    <entry file="file://$PROJECT_DIR$/../../../Group7_Final_Project/Loan/LoanPool.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
-          <caret line="26" column="55" lean-forward="true" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+        <state relative-caret-position="100">
+          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="88" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Waterfall/tranche.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="41" column="15" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Loan/loan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="554">
+          <caret line="56" column="15" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Loan/loanbase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="54" column="43" lean-forward="false" selection-start-line="54" selection-start-column="41" selection-end-line="54" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Waterfall/structuredsecurity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="57" column="34" lean-forward="false" selection-start-line="57" selection-start-column="34" selection-end-line="57" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Loan/loanpool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>

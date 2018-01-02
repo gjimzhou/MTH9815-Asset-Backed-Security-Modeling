@@ -20,7 +20,7 @@ class MortgageMixin(Loan):
         loanValue = Loan.calculateBalance(notional, rate, term, period)
         assetValue = self._asset.currentValue(period)
         ltv = loanValue / assetValue
-        pmi = (ltv >= 0.8) * 0.000075 * notional
+        pmi = (ltv > 0.8) * 0.000075 * notional
         return pmi
 
     def monthlyPayment(self, period):
