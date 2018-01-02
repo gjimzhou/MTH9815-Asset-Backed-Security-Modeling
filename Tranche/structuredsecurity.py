@@ -5,7 +5,7 @@ StructuredSecurity Classes
 Author: gjimzhou
 """
 
-from Waterfall.tranche import *
+from Tranche.tranche import *
 
 
 class StructuredSecurity(object):

@@ -56,3 +56,12 @@ class LoanPool(object):
             war += l.rate * l.notional
         war /= self.totalPrincipal()
         return war
+
+    def getWaterfall(self):
+        waterfall = []
+        for l in self._loans:
+            interestDue = l.interestDue()
+            principalDue = l.principalDue()
+            notionalBalance = l.balance()
+            waterfall.append([interestDue, principalDue, notionalBalance])
+        return waterfall
