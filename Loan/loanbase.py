@@ -5,6 +5,8 @@ Loan Classes
 Author: gjimzhou
 """
 
+from Asset.asset import *
+
 
 class Loan(object):
     def __init__(self, notional, rate, term):
@@ -22,7 +24,7 @@ class Loan(object):
 
     @property
     def rate(self):
-        return float(self._rate)
+        return self._rate
 
     @rate.setter
     def rate(self, rate):
@@ -30,7 +32,7 @@ class Loan(object):
 
     @property
     def term(self):
-        return float(self._term)
+        return self._term
 
     @term.setter
     def term(self, term):
