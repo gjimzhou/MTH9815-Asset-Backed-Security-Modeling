@@ -5,7 +5,6 @@ LoanPool Classes
 Author: gjimzhou
 """
 
-import numpy as np
 from Loan.mortgage import *
 from Loan.autoloan import *
 

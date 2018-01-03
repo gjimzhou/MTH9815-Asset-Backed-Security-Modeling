@@ -31,6 +31,18 @@ class StructuredSecurity(object):
     def reserveAccount(self):
         return self._reserveAccount
 
+    def getNotionals(self):
+        notionals = [t.notional for t in self._tranches]
+        return notionals
+
+    def getRates(self):
+        rates = [t.rate for t in self._tranches]
+        return rates
+
+    def getCoefficients(self):
+        coefficients = [t.coefficient for t in self._tranches]
+        return coefficients
+
     def addTranche(self, percent, rate, subordination):
         tranche = StandardTranche(self._totalNotional * percent, rate, subordination)
         self._tranches.append(tranche)

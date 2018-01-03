@@ -5,6 +5,7 @@ Loan Classes
 Author: gjimzhou
 """
 
+import numpy as np
 from Asset.asset import *
 
 

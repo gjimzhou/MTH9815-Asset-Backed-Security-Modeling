@@ -9,10 +9,11 @@ import numpy as np
 
 
 class Tranche(object):
-    def __init__(self, notional, rate, subordination):
+    def __init__(self, notional, rate, subordination, coefficient):
         self._notional = notional
         self._rate = rate
         self._subordination = subordination
+        self._coefficient = coefficient
 
     @property
     def notional(self):
@@ -37,6 +38,14 @@ class Tranche(object):
     @subordination.setter
     def subordination(self, subordination):
         self._subordination = subordination
+
+    @property
+    def coefficient(self):
+        return self._coefficient
+
+    @coefficient.setter
+    def coefficient(self, coefficient):
+        self._coefficient = coefficient
 
     def irr(self):
         pass
@@ -118,10 +127,9 @@ class StandardTranche(Tranche):
         self._ifPaidInterest = 0
 
     def makePrincipalPayment(self, principalPayment):
-        notionalBalance = self.notionalBalance()
         if self._ifPaidPrincipal == 1:
             raise Exception("Already made principal payment for this time period!")
-        elif notionalBalance == 0:
+        elif self.notionalBalance() == 0:
             raise Exception("Notional balance is zero!")
         else:
             self._principalPayments.append(principalPayment)
@@ -193,6 +201,8 @@ class StandardTranche(Tranche):
         return np.irr(cashFlow) * 12
 
     def al(self):
-        periods = list(range(self._period))
-        al = np.dot(periods, self._notionalBalances) / self._notional
+        al = np.nan
+        if self.notionalBalance() == 0:
+            periods = list(range(self._period))
+            al = np.dot(periods, self._notionalBalances) / self._notional
         return al
