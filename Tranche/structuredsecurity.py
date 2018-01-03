@@ -67,6 +67,10 @@ class StructuredSecurity(object):
 
         self._reserveAccount += cashAmount
 
+    def reset(self):
+        for t in self._tranches:
+            t.reset()
+
     def getWaterfall(self):
         waterfall = [t.trancheInfo() for t in self._tranches]
         return waterfall

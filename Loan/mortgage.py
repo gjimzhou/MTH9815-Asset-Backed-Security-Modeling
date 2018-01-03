@@ -11,9 +11,9 @@ from Asset.house import *
 
 class MortgageMixin(Loan):
     def __init__(self, notional, rate, term, house):
-        super().__init__(notional, rate, term, house)
         if isinstance(house, House):
-            self._house = house
+            super().__init__(notional, rate, term, house)
+            self._house = self._asset
         else:
             raise Exception("This is not a house!")
 

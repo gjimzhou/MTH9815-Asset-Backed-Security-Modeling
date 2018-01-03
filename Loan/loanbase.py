@@ -17,6 +17,7 @@ class Loan(object):
             self._asset = asset
         else:
             raise Exception("This is not an asset!")
+        self._ifDefault = 0
 
     @property
     def notional(self):
@@ -46,7 +47,8 @@ class Loan(object):
         notional = self._notional
         rate = self.monthlyRate(self._rate)
         term = self._term
-        return self.calculateMonthlyPayment(notional, rate, term, period)
+        default = self._ifDefault
+        return (default == 0) * self.calculateMonthlyPayment(notional, rate, term, period)
 
     def totalPayment(self):
         totalPayment = 0
@@ -75,7 +77,8 @@ class Loan(object):
         notional = self._notional
         rate = self.monthlyRate(self._rate)
         term = self._term
-        balance = self.calculateBalance(notional, rate, term, period)
+        default = self._ifDefault
+        balance = (default == 0) * self.calculateBalance(notional, rate, term, period)
         return balance
 
     def loanInfo(self, period):
@@ -94,6 +97,13 @@ class Loan(object):
         assetValue = self._asset.currentValue(period)
         equity = assetValue - loanValue
         return equity
+
+    def checkDefault(self, period, number):
+        recoveryValue = 0
+        if number == 0:
+            self._ifDefault = 1
+            recoveryValue += self._asset.recoveryValue(period)
+        return recoveryValue
 
     @classmethod
     def calculateMonthlyPayment(cls, notional, rate, term, period):

@@ -49,7 +49,7 @@ class Tranche(object):
         pass
 
     def metrics(self):
-        metrics = [self.irr(), self.dirrRating(self.dirr()), self.al()]
+        metrics = [self.irr(), self.dirr(), self.al(), self.dirrRating(self.dirr())]
         return metrics
 
     @staticmethod

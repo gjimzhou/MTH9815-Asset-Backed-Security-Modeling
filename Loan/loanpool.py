@@ -5,6 +5,7 @@ LoanPool Classes
 Author: gjimzhou
 """
 
+import numpy as np
 from Loan.mortgage import *
 from Loan.autoloan import *
 
@@ -42,6 +43,12 @@ class LoanPool(object):
         for l in self._loans:
             activeLoan += (l.balance(period) > 0)
         return activeLoan
+
+    def checkDefaults(self, period):
+        range = [10, 60, 120, 180, 210, 360]
+        probabilities = [0.0005, 0.001, 0.002, 0.004, 0.002, 0.001]
+        index = sum([(period > r) for r in range])
+        numbers = np.random.uniform(0, 1 / probabilities[index], len(self._loans))
 
     def wam(self):
         wam = 0
