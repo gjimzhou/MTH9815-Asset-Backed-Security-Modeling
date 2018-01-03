@@ -105,6 +105,9 @@ class Loan(object):
             recoveryValue += self._asset.recoveryValue(period)
         return recoveryValue
 
+    def reset(self):
+        self._ifDefault = 0
+
     @classmethod
     def calculateMonthlyPayment(cls, notional, rate, term, period):
         monthlyPayment = rate * notional / (1 - (1 + rate) ** (-term))

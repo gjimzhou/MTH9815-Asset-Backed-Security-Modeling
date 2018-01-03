@@ -18,30 +18,26 @@ class LoanPool(object):
         self._loans.append(loan)
 
     def totalPrincipal(self):
-        totalPrincipal = 0
-        for l in self._loans:
-            totalPrincipal += l.notional
+        notionals = [l.notional for l in self._loans]
+        totalPrincipal = sum(notionals)
         return totalPrincipal
 
     def totalBalance(self, period):
-        totalBalance = 0
-        for l in self._loans:
-            totalBalance += l.balance(period)
+        balances = [l.balance(period) for l in self._loans]
+        totalBalance = sum(balances)
         return totalBalance
 
     def totalDue(self, period):
-        totalPrincipalDue = 0
-        totalInterestDue = 0
-        for l in self._loans:
-            totalPrincipalDue += l.principalDue(period)
-            totalInterestDue += l.interestDue(period)
+        principalDues = [l.principalDue(period) for l in self._loans]
+        interestDues = [l.interestDue(period) for l in self._loans]
+        totalPrincipalDue = sum(principalDues)
+        totalInterestDue = sum(interestDues)
         totalDue = totalPrincipalDue + totalInterestDue
         return [totalPrincipalDue, totalInterestDue, totalDue]
 
     def activeLoan(self, period):
-        activeLoan = 0
-        for l in self._loans:
-            activeLoan += (l.balance(period) > 0)
+        activeLoans = [(l.balance(period) > 0) for l in self._loans]
+        activeLoan = sum(activeLoans)
         return activeLoan
 
     def checkDefaults(self, period):
@@ -50,18 +46,20 @@ class LoanPool(object):
         index = sum([(period > r) for r in range])
         numbers = np.random.uniform(0, 1 / probabilities[index], len(self._loans))
 
-    def wam(self):
-        wam = 0
+    def reset(self):
         for l in self._loans:
-            wam += l.term * l.notional
-        wam /= self.totalPrincipal()
+            l.reset()
+
+    def wam(self):
+        terms = [l.term for l in self._loans]
+        notionals = [l.notional for l in self._loans]
+        wam = np.dot(terms, notionals) / self.totalPrincipal()
         return wam
 
     def war(self):
-        war = 0
-        for l in self._loans:
-            war += l.rate * l.notional
-        war /= self.totalPrincipal()
+        rates = [l.rate for l in self._loans]
+        notionals = [l.notional for l in self._loans]
+        war = np.dot(rates, notionals) / self.totalPrincipal()
         return war
 
     def getWaterfall(self, period):
