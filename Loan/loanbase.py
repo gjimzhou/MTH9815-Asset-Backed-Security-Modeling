@@ -78,6 +78,13 @@ class Loan(object):
         balance = self.calculateBalance(notional, rate, term, period)
         return balance
 
+    def loanInfo(self, period):
+        interestDue = self.interestDue(period)
+        principalDue = self.principalDue(period)
+        notionalBalance = self.balance(period)
+        loanInfo = [interestDue, principalDue, notionalBalance]
+        return loanInfo
+
     def recoveryValue(self, period):
         recoveryValue = self._asset.currentValue(period) * 0.6
         return recoveryValue

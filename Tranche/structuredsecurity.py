@@ -68,21 +68,9 @@ class StructuredSecurity(object):
         self._reserveAccount += cashAmount
 
     def getWaterfall(self):
-        waterfall = []
-
-        for t in self._tranches:
-            interestDue = t.interestDue()
-            interestPaid = 0
-            interestShortfall = 0
-            principalPaid = 0
-            notionalBalance = t.notionalBalance()
-            if t.ifPaidInterest == 1:
-                interestPaid = t.interestPayments[-1]
-                interestShortfall = t.interestShortfall[-1]
-            else:
-                interestShortfall = interestDue
-            if t.ifPaidPrincipal == 1:
-                principalPaid = t.principalPayments[-1]
-            waterfall.append([interestDue, interestPaid, interestShortfall, principalPaid, notionalBalance])
-
+        waterfall = [t.trancheInfo() for t in self._tranches]
         return waterfall
+
+    def getMetrics(self):
+        metrics = [t.metrics() for t in self._tranches]
+        return metrics

@@ -48,6 +48,28 @@ class Tranche(object):
     def al(self):
         pass
 
+    def metrics(self):
+        metrics = [self.irr(), self.dirrRating(self.dirr()), self.al()]
+        return metrics
+
+    @staticmethod
+    def monthlyRate(annualRate):
+        monthlyRate = annualRate / 12
+        return monthlyRate
+
+    @staticmethod
+    def annualRate(monthlyRate):
+        annualRate = monthlyRate * 12
+        return annualRate
+
+    @staticmethod
+    def dirrRating(dirr):
+        dirrs = [0.06, 0.67, 1.3, 2.7, 5.2, 8.9, 13, 19, 27, 46, 72, 106, 143, 183, 231, 311, 2500, 10000]
+        ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1', 'B2', 'B3', 'Caa', 'Ca']
+        index = sum([(dirr > d) for d in dirrs])
+        rating = ratings[index]
+        return rating
+
 
 class StandardTranche(Tranche):
     def __init__(self, notional, rate, subordination):
@@ -123,6 +145,7 @@ class StandardTranche(Tranche):
         return notionalBalance
 
     def interestDue(self):
+        rate = self.monthlyRate(self._rate)
         notionalBalance = self.notionalBalance()
         principalPayment = 0
         interestPayment = 0
@@ -134,9 +157,25 @@ class StandardTranche(Tranche):
             interestShortfall += self._interestShortfalls[-1]
         notionalBalance += principalPayment
         notionalBalance -= interestShortfall
-        interestDue = notionalBalance * self._rate
+        interestDue = notionalBalance * rate
         interestDue -= interestPayment
         return interestDue
+
+    def trancheInfo(self):
+        interestDue = self.interestDue()
+        interestPaid = 0
+        interestShortfall = 0
+        principalPaid = 0
+        notionalBalance = self.notionalBalance()
+        if self._ifPaidInterest == 1:
+            interestPaid = self._interestPayments[-1]
+            interestShortfall = self._interestShortfalls[-1]
+        else:
+            interestShortfall = interestDue
+        if self._ifPaidPrincipal == 1:
+            principalPaid = self._principalPayments[-1]
+        trancheInfo = [interestDue, interestPaid, interestShortfall, principalPaid, notionalBalance]
+        return trancheInfo
 
     def reset(self):
         self._period = 0
