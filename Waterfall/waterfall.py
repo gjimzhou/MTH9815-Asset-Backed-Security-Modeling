@@ -25,7 +25,6 @@ def doWaterfall(loanPool, structuredSecurity):
         structuredSecurityWaterfall.append(structuredSecurity.getWaterfall(period))
         period += 1
         structuredSecurity.increaseTimePeriods()
-
     metrics = structuredSecurity.getMetrics()
     return [loanPoolWaterfall, structuredSecurityWaterfall, metrics]
 

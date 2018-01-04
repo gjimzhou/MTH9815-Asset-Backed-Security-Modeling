@@ -46,7 +46,7 @@ class StructuredSecurity(object):
     def addTranche(self, percent, rate, subordination, coefficient):
         tranche = StandardTranche(self._totalNotional * percent, rate, subordination, coefficient)
         self._tranches.append(tranche)
-        self._tranches.sort(key=lambda t: t.subordination, reverse=True)
+        self._tranches.sort(key=lambda t: t.subordination, reverse=False)
 
     def increaseTimePeriods(self):
         for t in self._tranches:

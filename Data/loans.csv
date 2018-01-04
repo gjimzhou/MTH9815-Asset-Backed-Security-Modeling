@@ -1,4 +1,4 @@
-Loan #,Loan Type,Notional,Rate,Term,Asset,Asset Value,Dep Rate
+Loan Number,Loan Type,Notional,Rate,Term,Asset,Asset Value,Dep Rate
 1,Auto Loan,17920.01976,0.191606412,59,Lamborghini,14495.99142,0.114
 2,Auto Loan,19805.4362,0.164483663,58,Civic,16243.78906,0.114
 3,Auto Loan,26282.12875,0.166528822,62,Lexus,22719.76774,0.106

@@ -78,6 +78,7 @@ def testWaterfall(loanFileName, trancheFileName, mode, simulationNumber, toleran
     assets, liabilities, metrics = doWaterfall(loanPool, structuredSecurity)
     writeAssets(assets)
     writeLiabilities(liabilities)
+    print(metrics)
 
     print("Now running simulateWaterfall...")
     averageDirrs, averageAls = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)

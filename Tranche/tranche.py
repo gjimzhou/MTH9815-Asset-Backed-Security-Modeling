@@ -76,7 +76,7 @@ class Tranche(object):
         dirrs = [0.06, 0.67, 1.3, 2.7, 5.2, 8.9, 13, 19, 27, 46, 72, 106, 143, 183, 231, 311, 2500, 10000]
         ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1',
                    'B2', 'B3', 'Caa', 'Ca']
-        index = sum([(dirr > d) for d in dirrs])
+        index = sum([(dirr * 10000 > d) for d in dirrs])
         rating = ratings[index]
         return rating
 
@@ -130,8 +130,8 @@ class StandardTranche(Tranche):
     def makePrincipalPayment(self, principalPayment):
         if self._ifPaidPrincipal == 1:
             raise Exception("Already made principal payment for this time period!")
-        elif self.notionalBalance() == 0:
-            raise Exception("Notional balance is zero!")
+        #elif self.notionalBalance() == 0:
+        #    raise Exception("Notional balance is zero!")
         else:
             self._principalPayments.append(principalPayment)
             self._ifPaidPrincipal = 1
@@ -140,8 +140,8 @@ class StandardTranche(Tranche):
         interestDue = self.interestDue()
         if self._ifPaidInterest == 1:
             raise Exception("Already made interest payment for this time period!")
-        elif interestDue == 0:
-            raise Exception("Interest due is zero!")
+        #elif interestDue == 0:
+        #    raise Exception("Interest due is zero!")
         else:
             self._interestPayments.append(interestPayment)
             self._interestShortfalls.append(interestDue - interestPayment)
@@ -166,8 +166,7 @@ class StandardTranche(Tranche):
             interestShortfall += self._interestShortfalls[-1]
         notionalBalance += principalPayment
         notionalBalance -= interestShortfall
-        interestDue = notionalBalance * rate
-        interestDue -= interestPayment
+        interestDue = (self._period != 0) * (notionalBalance * rate - interestPayment)
         return interestDue
 
     def trancheInfo(self):
@@ -191,6 +190,7 @@ class StandardTranche(Tranche):
         self._principalPayments = []
         self._interestPayments = []
         self._interestShortfalls = []
+        self._notionalBalances = []
         self._ifPaidPrincipal = 0
         self._ifPaidInterest = 0
 

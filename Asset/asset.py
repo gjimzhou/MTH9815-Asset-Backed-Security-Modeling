@@ -34,7 +34,8 @@ class Asset(object):
         return currentValue
 
     def recoveryValue(self, period):
-        pass
+        recoveryValue = self.currentValue(period) * 0.6
+        return recoveryValue
 
     @staticmethod
     def monthlyDepreciateRate(annualDepreciateRate):
