@@ -74,7 +74,8 @@ class Tranche(object):
     @staticmethod
     def dirrRating(dirr):
         dirrs = [0.06, 0.67, 1.3, 2.7, 5.2, 8.9, 13, 19, 27, 46, 72, 106, 143, 183, 231, 311, 2500, 10000]
-        ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1', 'B2', 'B3', 'Caa', 'Ca']
+        ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1',
+                   'B2', 'B3', 'Caa', 'Ca']
         index = sum([(dirr > d) for d in dirrs])
         rating = ratings[index]
         return rating
@@ -194,7 +195,7 @@ class StandardTranche(Tranche):
         self._ifPaidInterest = 0
 
     def irr(self):
-        cashFlow = [self._notional]
+        cashFlow = [-self._notional]
         for i in range(1, self._period):
             totalPayment = self._principalPayments[i] + self._interestPayments[i]
             cashFlow.append(totalPayment)

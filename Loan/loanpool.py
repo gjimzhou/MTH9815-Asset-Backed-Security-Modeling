@@ -44,6 +44,9 @@ class LoanPool(object):
         probabilities = [0.0005, 0.001, 0.002, 0.004, 0.002, 0.001]
         index = sum([(period > r) for r in range])
         numbers = np.random.uniform(0, 1 / probabilities[index], len(self._loans))
+        recoveryValues = [l.checkDefault(period, n) for l, n in zip(self._loans, numbers)]
+        recoveryValue = sum(recoveryValues)
+        return recoveryValue
 
     def reset(self):
         for l in self._loans:
@@ -63,5 +66,5 @@ class LoanPool(object):
 
     def getWaterfall(self, period):
         waterfalls = [l.loanInfo(period) for l in self._loans]
-        waterfall = [period] + np.mean(waterfalls, axis=0)
+        waterfall = [period] + list(np.mean(waterfalls, axis=0))
         return waterfall

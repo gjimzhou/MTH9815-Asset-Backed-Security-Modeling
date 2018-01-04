@@ -10,11 +10,9 @@ from Tranche.structuredsecurity import *
 
 
 def doWaterfall(loanPool, structuredSecurity):
-    loanPoolWaterfall = {}
-    structuredSecurityWaterfall = {}
     period = 0
-    loanPoolWaterfall[period] = loanPool.getWaterfall()
-    structuredSecurityWaterfall[period] = structuredSecurity.getWaterfall()
+    loanPoolWaterfall = [loanPool.getWaterfall(period)]
+    structuredSecurityWaterfall = [structuredSecurity.getWaterfall(period)]
     period += 1
     structuredSecurity.increaseTimePeriods()
 
@@ -23,8 +21,8 @@ def doWaterfall(loanPool, structuredSecurity):
         normalPayment = loanPool.totalDue(period)[-1]
         totalPayment = normalPayment + recoveryValue
         structuredSecurity.makePayments(totalPayment)
-        loanPoolWaterfall[period] = loanPool.getWaterfall()
-        structuredSecurityWaterfall[period] = structuredSecurity.getWaterfall(period)
+        loanPoolWaterfall.append(loanPool.getWaterfall(period))
+        structuredSecurityWaterfall.append(structuredSecurity.getWaterfall(period))
         period += 1
         structuredSecurity.increaseTimePeriods()
 
@@ -59,7 +57,8 @@ def runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance):
     while(difference > tolerance):
         averageDirrs, averageAls = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)
         yieldRates = [calculateYield(d, a) for d, a in zip(averageDirrs, averageAls)]
-        newTrancheRates = [calculateNewTrancheRate(y, o, c) for y, o, c in zip(yieldRates, oldTrancheRates, coefficients)]
+        newTrancheRates = [calculateNewTrancheRate(y, o, c) for y, o, c in
+                           zip(yieldRates, oldTrancheRates, coefficients)]
         difference = calculateDifference(notionals, oldTrancheRates, newTrancheRates)
         oldTrancheRates = newTrancheRates
 
