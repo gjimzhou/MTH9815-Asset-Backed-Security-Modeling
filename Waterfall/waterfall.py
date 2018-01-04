@@ -58,8 +58,8 @@ def runMonte(loanPool, structuredSecurity, simulationNumber, tolerance):
 
     while(difference > tolerance):
         averageDirrs, averageAls = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)
-        yieldRates = [calculateYield(averageDirrs[i], averageAls[i]) for i in range(len(notionals))]
-        newTrancheRates = [calculateNewTrancheRate(yieldRates[i], oldTrancheRates[i], coefficients[i]) for i in range(len(notionals))]
+        yieldRates = [calculateYield(d, a) for d, a in zip(averageDirrs, averageAls)]
+        newTrancheRates = [calculateNewTrancheRate(y, o, c) for y, o, c in zip(yieldRates, oldTrancheRates, coefficients)]
         difference = calculateDifference(notionals, oldTrancheRates, newTrancheRates)
         oldTrancheRates = newTrancheRates
 
@@ -77,6 +77,6 @@ def calculateNewTrancheRate(yieldRate, oldTrancheRate, coefficient):
 
 
 def calculateDifference(notionals, oldTrancheRates, newTrancheRates):
-    errors = [np.absolute((oldTrancheRates[i] - newTrancheRates[i]) / oldTrancheRates[i]) for i in range(len(notionals))]
+    errors = [np.absolute((o - n) / o) for o, n in zip(oldTrancheRates, newTrancheRates)]
     difference = np.average(errors, weights=notionals)
     return difference

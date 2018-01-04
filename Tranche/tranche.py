@@ -81,8 +81,8 @@ class Tranche(object):
 
 
 class StandardTranche(Tranche):
-    def __init__(self, notional, rate, subordination):
-        super().__init__(notional, rate, subordination)
+    def __init__(self, notional, rate, subordination, coefficient):
+        super().__init__(notional, rate, subordination, coefficient)
         self._period = 0
         self._principalPayments = []
         self._interestPayments = []

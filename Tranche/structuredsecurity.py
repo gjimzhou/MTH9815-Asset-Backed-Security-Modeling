@@ -43,8 +43,8 @@ class StructuredSecurity(object):
         coefficients = [t.coefficient for t in self._tranches]
         return coefficients
 
-    def addTranche(self, percent, rate, subordination):
-        tranche = StandardTranche(self._totalNotional * percent, rate, subordination)
+    def addTranche(self, percent, rate, subordination, coefficient):
+        tranche = StandardTranche(self._totalNotional * percent, rate, subordination, coefficient)
         self._tranches.append(tranche)
         self._tranches.sort(key=lambda t: t.subordination(), reverse=True)
 

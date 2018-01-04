@@ -5,7 +5,7 @@ Main Function
 Author: gjimzhou
 """
 
-from waterfall import *
+from Waterfall.test import *
 
 c = Lamborghini(100, 0.1)
 h = PrimaryHome(200, 0.2)
