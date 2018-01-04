@@ -11,7 +11,7 @@ from Waterfall.waterfall import *
 
 def createLoanPool(fileName):
     loanPool = LoanPool()
-    with open(fileName) as file:
+    with open(fileName, 'rb') as file:
         reader = csv.reader(file, delimiter=',')
         header = reader.next()
 
@@ -39,7 +39,7 @@ def createAsset(assetType, initialValue, depreciateRate):
 
 def createStructuredSecurity(fileName, loanPool, mode):
     structuredSecurity = StructuredSecurity(loanPool.totalPrincipal(), mode)
-    with open(fileName) as file:
+    with open(fileName, 'rb') as file:
         reader = csv.reader(file, delimiter=',')
         header = reader.next()
 
@@ -50,5 +50,36 @@ def createStructuredSecurity(fileName, loanPool, mode):
     return structuredSecurity
 
 
-def testWaterfall():
-    pass
+def writeAssets(assets):
+    with open('assets.csv', 'wb') as file:
+        writer = csv.writer(file, delimiter=',')
+        header = ['Total Interest Due', 'Total Principal Due', 'Total Notional Balance']
+        writer.writerow(header)
+        writer.writerows(assets)
+
+
+def writeLiabilities(liabilities):
+    with open('liabilities.csv', 'wb') as file:
+        writer = csv.writer(file, delimiter=',')
+        header = ['Total Interest Due', 'Total Interest Paid', 'Total Interest Shortfall', 'Principal Paid', 'Total Notional Balance']
+        writer.writerow(header)
+        writer.writerows(liabilities)
+
+
+def testWaterfall(loanFileName, trancheFileName, mode, simulationNumber, tolerance):
+    loanPool = createLoanPool(loanFileName)
+    structuredSecurity = createStructuredSecurity(trancheFileName, loanPool, mode)
+
+    print("Now running doWaterfall...")
+    assets, liabilities, metrics = doWaterfall(loanPool, structuredSecurity)
+    writeAssets(assets)
+    writeLiabilities(liabilities)
+
+    print("Now running simulateWaterfall...")
+    averageDirrs, averageAls = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)
+    print(averageDirrs, averageAls)
+
+    print("Now running runMonteCarlo...")
+    averageDirrs, averageAls = runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance)
+    print(averageDirrs, averageAls)
+

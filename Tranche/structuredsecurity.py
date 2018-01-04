@@ -83,8 +83,9 @@ class StructuredSecurity(object):
         for t in self._tranches:
             t.reset()
 
-    def getWaterfall(self):
-        waterfall = [t.trancheInfo() for t in self._tranches]
+    def getWaterfall(self, period):
+        waterfalls = [t.trancheInfo() for t in self._tranches]
+        waterfall = [period] + np.mean(waterfalls, axis=0)
         return waterfall
 
     def getMetrics(self):

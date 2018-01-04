@@ -24,7 +24,7 @@ def doWaterfall(loanPool, structuredSecurity):
         totalPayment = normalPayment + recoveryValue
         structuredSecurity.makePayments(totalPayment)
         loanPoolWaterfall[period] = loanPool.getWaterfall()
-        structuredSecurityWaterfall[period] = structuredSecurity.getWaterfall()
+        structuredSecurityWaterfall[period] = structuredSecurity.getWaterfall(period)
         period += 1
         structuredSecurity.increaseTimePeriods()
 
@@ -48,7 +48,7 @@ def simulateWaterfall(loanPool, structuredSecurity, simulationNumber):
     return [averageDirrs, averageAls]
 
 
-def runMonte(loanPool, structuredSecurity, simulationNumber, tolerance):
+def runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance):
     difference = tolerance * 2
     notionals = structuredSecurity.getNotionals()
     oldTrancheRates = structuredSecurity.getRates()

@@ -62,5 +62,6 @@ class LoanPool(object):
         return war
 
     def getWaterfall(self, period):
-        waterfall = [l.loanInfo(period) for l in self._loans]
+        waterfalls = [l.loanInfo(period) for l in self._loans]
+        waterfall = [period] + np.mean(waterfalls, axis=0)
         return waterfall
