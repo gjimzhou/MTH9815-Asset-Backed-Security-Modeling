@@ -81,10 +81,10 @@ def testWaterfall(loanFileName, trancheFileName, mode, simulationNumber, toleran
     print(metrics)
 
     print("Now running simulateWaterfall...")
-    averageDirrs, averageAls = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)
-    print(averageDirrs, averageAls)
+    averageDirrs, averageAls, averageDirrRatings = simulateWaterfall(loanPool, structuredSecurity, simulationNumber)
+    print(averageDirrs, averageAls, averageDirrRatings)
 
     print("Now running runMonteCarlo...")
-    averageDirrs, averageAls = runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance)
-    print(averageDirrs, averageAls)
-
+    oldTrancheRates, averageDirrs, averageAls, averageDirrRatings = runMonteCarlo(loanPool, structuredSecurity,
+                                                                                  simulationNumber, tolerance)
+    print(oldTrancheRates, averageDirrs, averageAls, averageDirrRatings)

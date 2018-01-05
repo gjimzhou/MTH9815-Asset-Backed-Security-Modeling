@@ -202,8 +202,6 @@ class StandardTranche(Tranche):
         return np.irr(cashFlow) * 12
 
     def al(self):
-        al = np.nan
-        if self.notionalBalance() == 0:
-            periods = list(range(self._period))
-            al = np.dot(periods, self._notionalBalances) / self._notional
+        periods = list(range(self._period))
+        al = np.dot(periods, self._notionalBalances) / self._notional
         return al
