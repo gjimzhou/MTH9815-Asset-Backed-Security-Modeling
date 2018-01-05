@@ -74,14 +74,16 @@ def runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance):
 
 def dirrRating(dirr):
     dirrs = [0.06, 0.67, 1.3, 2.7, 5.2, 8.9, 13, 19, 27, 46, 72, 106, 143, 183, 231, 311, 2500, 10000]
-    ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1',
-               'B2', 'B3', 'Caa', 'Ca']
+    ratings = ['Aaa', 'Aa1', 'Aa2', 'Aa3', 'A1', 'A2', 'A3', 'Baa1', 'Baa2', 'Baa3', 'Ba1', 'Ba2', 'Ba3', 'B1', 'B2',
+               'B3', 'Caa', 'Ca']
     index = sum([(dirr * 10000 > d) for d in dirrs])
     rating = ratings[index]
     return rating
 
 
 def calculateYield(dirr, al):
+    dirr = max(dirr, 0)
+    al = max(al, 0)
     yieldRate = ((7 / (1 + 0.08 * np.exp(-0.19 * al / 12))) + 0.019 * np.sqrt(al / 12 * dirr * 100)) / 100
     return yieldRate
 
