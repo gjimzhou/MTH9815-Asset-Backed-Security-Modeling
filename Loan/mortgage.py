@@ -45,5 +45,4 @@ class FixedMortgage(MortgageMixin, FixedRateLoan):
 
 class VariableMortgage(MortgageMixin, VariableRateLoan):
     def __init__(self, notional, rateDictionary, term, house):
-        MortgageMixin.__init__(notional, None, term, house)
-        VariableRateLoan.__init__(notional, rateDictionary, term)
+        super().__init__(notional, rateDictionary, term, house)
