@@ -6,6 +6,7 @@ Author: gjimzhou
 """
 
 import numpy as np
+import numpy_financial as npf
 
 
 class Tranche(object):
@@ -199,7 +200,7 @@ class StandardTranche(Tranche):
         for i in range(1, self._period):
             totalPayment = self._principalPayments[i] + self._interestPayments[i]
             cashFlow.append(totalPayment)
-        return np.irr(cashFlow) * 12
+        return npf.irr(cashFlow) * 12
 
     def al(self):
         periods = list(range(self._period))
