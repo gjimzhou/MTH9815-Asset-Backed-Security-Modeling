@@ -66,6 +66,8 @@ def runMonteCarlo(loanPool, structuredSecurity, simulationNumber, tolerance):
         newTrancheRates = [calculateNewTrancheRate(y, o, c) for y, o, c in
                            zip(yieldRates, oldTrancheRates, coefficients)]
         difference = calculateDifference(notionals, oldTrancheRates, newTrancheRates)
+        for tranche, newRate in zip(structuredSecurity._tranches, newTrancheRates):
+            tranche.rate = newRate
         oldTrancheRates = newTrancheRates
         iterationNumber += 1
 
