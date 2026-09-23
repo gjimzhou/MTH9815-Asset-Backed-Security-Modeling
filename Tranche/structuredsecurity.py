@@ -77,7 +77,7 @@ class StructuredSecurity(object):
                 principalPayments += principalPayment
             cashAmount -= principalPayments
 
-        self._reserveAccount += cashAmount
+        self._reserveAccount = cashAmount
 
     def reset(self):
         for t in self._tranches:
