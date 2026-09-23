@@ -80,6 +80,7 @@ class StructuredSecurity(object):
         self._reserveAccount = cashAmount
 
     def reset(self):
+        self._reserveAccount = 0
         for t in self._tranches:
             t.reset()
 
