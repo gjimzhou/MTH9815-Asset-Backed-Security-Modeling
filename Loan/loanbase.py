@@ -101,7 +101,7 @@ class Loan(object):
 
     def checkDefault(self, period, number):
         recoveryValue = 0
-        if number == 0:
+        if self._ifDefault == 0 and number == 0:
             self._ifDefault = 1
             recoveryValue += self._asset.recoveryValue(period)
         return recoveryValue
